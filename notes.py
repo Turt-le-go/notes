@@ -25,7 +25,7 @@ def get_args():
     com = ""
     text = ""
     args = sys.argv
-    coms = ["help","init","push","pull"]
+    coms = ["help","init","push","pull","rg"]
     coms.extend(config.FILE_SUFFIX)
     if len(args) == 1:
         return com, text
@@ -45,6 +45,9 @@ def main():
         return
     elif com == "init":
         system(f"mkdir {config.NOTES_DIR}")
+        return
+    elif com == "rg":
+        system(f"rg {text} -A 1 -B 3 {config.NOTES_DIR}")
         return
     elif com in config.FILE_SUFFIX:
         stoday = today.strftime("%b-%Y")
